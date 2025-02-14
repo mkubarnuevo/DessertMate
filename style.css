@@ -1,24 +1,21 @@
-/* Import Italiana Font */
-body {
-    font-family: 'Italiana', serif;
+/* Import Italiana Font  and for Layout*/
+/* Layout */
+body, .container {
+    font-family: 'PoetsenOne', sans-serif;
+    display: flex;
+    flex-direction: row;
     margin: 0;
     padding: 0;
-    display: flex;
+    width: 100%;
     height: 100vh;
 }
 
-/* Layout */
-.container {
-    display: flex;
-    width: 100%;
-}
-
 /* Sidebar */
+/* ----------------------------------------------------------------- */
 .sidebar {
     width: 40%;
     background-color: #E09075; /* Sidebar Color */
-    padding: 40px 20px;
-    color: black;
+    color: #F9F6ED;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -50,16 +47,17 @@ body {
 
 .sidebar nav ul li a {
     text-decoration: underline; /* Make links underlined */
-    color: black;
+    color: #F9F6ED;
     font-size: 30px;
     font-weight: bold;
 }
 
 .logout {
     text-decoration: none;
-    color: black;
+    color: #F9F6ED;
     font-size: 18px;
 }
+/* ----------------------------------------------------------------- */
 
 /* Main Content */
 .content {
@@ -78,7 +76,96 @@ body {
     margin-top: 50px;
 }
 
-/* Support Sections */
+/* For Login page */
+/* ----------------------------------------------------------------- */
+.loginGreetingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0 5%;
+}
+
+.greetingsHeadline, .greetingMessage {
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    color: #F9F6ED;
+}
+
+.greetingsHeadline {
+    font-size: clamp(2em, 6vw, 3.5em);
+    margin-top: clamp(1.3em, 4.8vh, 5.8em);
+}
+
+.greetingMessage {
+    font-size: clamp(1em, 3vw, 2em);
+}
+
+.loginContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0 5%;
+}
+
+.loginComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginField {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 30px;
+}
+
+.loginField input {
+    width: 250px;
+    height: 30px;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.loginField input:focus {
+    border-bottom: 2px solid #E09075;
+}
+
+.loginButton button {
+    width: 100px;
+    height: 40px;
+    background-color: #E09075;
+    color: #F9F6ED;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.loginButton button:hover {
+    background-color: #d07f65;
+}
+/* ----------------------------------------------------------------- */
+
+/* For Support page */
+/* ----------------------------------------------------------------- */
 .support-section {
     display: flex;
     flex-direction: column;
@@ -88,7 +175,7 @@ body {
 .support-item {
     display: flex;
     align-items: center;
-    background-color: #F4D8BF;
+    background-color: #F9F6ED;
     padding: 20px;
     margin-bottom: 80px;
 }
@@ -106,3 +193,6 @@ body {
     padding-left: 20px;
     font-size: 18px;
 }
+/* ----------------------------------------------------------------- */
+
+/* For NEXT PAGE */
