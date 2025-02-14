@@ -1,0 +1,109 @@
+/* Import Italiana Font */
+body {
+    font-family: 'Italiana', serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 30%;
+    background-color: #E09075; /* Sidebar Color */
+    padding: 40px 20px;
+    color: black;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome {
+    font-size: 30px;
+    margin-top: 80px;
+}
+
+.username {
+    font-size: 70px;
+    margin-top: -80px;
+}
+
+/* Navigation Menu */
+.sidebar nav ul {
+    list-style: none;
+    margin-top: -100px;
+    padding: 0;
+    text-align: center;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    text-decoration: underline; /* Make links underlined */
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
+.logout {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+/* Main Content */
+.content {
+    width: 70%;
+    background-color: #F9F6ED;
+    text-align: center;
+}
+
+.content h2 {
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
+/* Support Sections */
+.support-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.support-item {
+    display: flex;
+    align-items: center;
+    background-color: #F4D8BF;
+    padding: 20px;
+    margin-bottom: 80px;
+
+}
+
+.support-item h3 {
+    width: 20%;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.support-item p {
+    width: 80%;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
