@@ -15,7 +15,7 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 30%;
+    width: 40%;
     background-color: #E09075; /* Sidebar Color */
     padding: 40px 20px;
     color: black;
@@ -55,8 +55,6 @@ body {
     font-weight: bold;
 }
 
-
-
 .logout {
     text-decoration: none;
     color: black;
@@ -65,9 +63,12 @@ body {
 
 /* Main Content */
 .content {
-    width: 70%;
+    width: 60%;
     background-color: #F9F6ED;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .content h2 {
@@ -90,7 +91,6 @@ body {
     background-color: #F4D8BF;
     padding: 20px;
     margin-bottom: 80px;
-
 }
 
 .support-item h3 {
@@ -106,4 +106,3 @@ body {
     padding-left: 20px;
     font-size: 18px;
 }
-
