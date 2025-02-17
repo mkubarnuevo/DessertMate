@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DessertMate | User Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/poetsenone" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <p class="welcome">Welcome</p>
+            <h1 class="username">NAME</h1>
+            <nav>
+                <ul>
+                    <li><a href="HOMEPAGE.html">chatbot</a></li>
+                    <li><a href="MENU PAGE">menu</a></li>
+                    <li><a href="USER PROFILE.html">account</a></li>
+                    <li><a href="SUPPORT PAGE.html" class="active">support</a></li>
+                </ul>
+            </nav>
+            <a href="WELCOME PAGE.html" class="logout">log out</a>
+        </aside>
+        <main class="content">
+            <div class="'userProfileContent">
+                <h1 style="font-size: 60px;">USER PROFILE</h1>
+                <br>
+                <br>
+                <!-- EDIT TO DISPLAY CURRENT USERNAME, PASSWORD, AND CONTACT NUMBER -->
+                <div class="userProfileComponent">
+                    <div class="userProfileField">
+                        <div class="userProfileLabel">
+                            <label for="username">Username:</label>
+                        </div>
+                        <div class="userProfileInput">
+                            <input type="text" id="username" name="username" placeholder="Enter your username">
+                        </div>
+                    </div>
+                    <div class="userProfileField">
+                        <div class="userProfileLabel">
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="userProfileInput">
+                            <input type="text" id="email" name="email" placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <div class="userProfileField">
+                        <div class="userProfileLabel">
+                            <label for="contact">Contact #:</label>
+                        </div>
+                        <div class="userProfileInput">
+                            <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
+                        </div>
+                    </div>                    
+                    <br>
+                    <br>
+                    <div class="userProfileButtons">
+                        <button id="edit" class="edit-button">Edit</button>
+                        <button id="save_changes" class="save-button">Save Changes</button>
+                    </div> 
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
