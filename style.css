@@ -508,7 +508,7 @@ body, .container {
 }
 /* ----------------------------------------------------------------- */
 
-/* For NEW ADDITION Page */
+/* For LANDING PAGE Page */
 /* ----------------------------------------------------------------- */
 .center-container {
     display: flex;
@@ -532,6 +532,7 @@ body, .container {
     max-width: 50%; 
     padding: 20px;
     font-size: 150%;
+    color: #F9F6ED;
 }
 
 .button-container {
