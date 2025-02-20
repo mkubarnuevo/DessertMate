@@ -70,10 +70,17 @@ body, .container {
 }
 
 .logout {
-    text-decoration: none;
+    text-decoration: underline;
     color: #F9F6ED;
     font-size: 25px;
     margin-bottom: 15px;
+    background: none; /* Removes default button styling */
+    border: none;
+    cursor: pointer;
+    font-family: inherit; /* Ensures font matches other elements */
+    display: block; /* Makes it align like a link */
+    text-align: left; /* Aligns text properly */
+    padding: 0;
 }
 /* ----------------------------------------------------------------- */
 

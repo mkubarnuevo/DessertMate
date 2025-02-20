@@ -7,6 +7,7 @@
     <title>DessertMate | Add Menu (ADMIN)</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/poetsenone" rel="stylesheet">
+    <script src="auth.js" defer></script>
 </head>
 
 <body>
@@ -17,10 +18,10 @@
             <h1 class="username">NAME</h1>
             <nav>
                 <ul>
-                    <li><a href="MANAGE MENU PAGE.html">manage menu</a></li>
+                    <li><a href="MANAGE MENU PAGE.html">Manage Menu</a></li>
                 </ul>
             </nav>
-            <a href="LANDING PAGE.html" class="logout">log out</a>
+            <button class="logout">Log Out</button> <!-- Fixed Logout Button -->
         </aside>
 
         <!-- Main Content -->
@@ -29,14 +30,16 @@
             <div class="menu-container">
                 <div class="menu-catalog addMenuCard">
                     <div class="addMenuImageUpload">Upload Image</div>
+
                     <div class="addMenuField">
                         <div class="addMenuLabel">
-                            <label for="dessertname">Name:</label>
+                            <label for="dessert_name">Name:</label>
                         </div>
                         <div class="addMenuInput">
                             <input type="text" id="dessert_name" name="dessert_name" placeholder="Enter dessert name">
                         </div>
                     </div>
+
                     <div class="addMenuField">
                         <div class="addMenuLabel">
                             <label for="price">Price:</label>
@@ -45,22 +48,24 @@
                             <input type="text" id="price" name="price" placeholder="Enter price">
                         </div>
                     </div>
+
                     <div class="addMenuField">
                         <div class="addMenuLabel">
                             <label for="description">Description:</label>
                         </div>
                         <div class="addMenuInput">
-                            <textarea id="contact" name="description" placeholder="Enter description"></textarea>
+                            <textarea id="description" name="description" placeholder="Enter description"></textarea>
                         </div>
                     </div>
-                    <br>
-                    <br>
+
+                    <br><br>
                     <div class="addMenuButtons">
                         <button id="add" class="add-button">Add</button>
                     </div>
                 </div>
+            </div> <!-- Closes .menu-container -->
         </main>
-    </div>
+    </div> <!-- Closes .container -->
 </body>
 
 </html>
