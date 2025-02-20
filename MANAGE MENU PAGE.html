@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DessertMate | Manage Menu</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/poetsenone" rel="stylesheet">
+    <script src="auth.js" defer></script>
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <p class="welcome">Welcome</p>
-            <h1 class="username">NAME</h1>
+            <h1 class="username">Loading...</h1> <!-- Will be replaced with the real username -->
             <nav>
                 <ul>
-                    <li><a href="HOMEPAGE.html">chatbot</a></li>
-                    <li><a href="MENU PAGE.html">menu</a></li>
-                    <li><a href="USER PROFILE.html">account</a></li>
-                    <li><a href="SUPPORT PAGE.html" class="active">support</a></li>
-                    <li><a href="MANAGE MENU PAGE.html">manage menu</a></li>
+                    <li><a href="HOMEPAGE.html">Chatbot</a></li>
+                    <li><a href="MENU PAGE.html">Menu</a></li>
+                    <li><a href="USER PROFILE.html">Account</a></li>
+                    <li><a href="SUPPORT PAGE.html" class="active">Support</a></li>
+                    <li><a href="MANAGE MENU PAGE.html">Manage Menu</a></li>
                 </ul>
             </nav>
-            <a href="LANDING PAGE.html" class="logout">log out</a>
+            <button class="logout">Log Out</button> <!-- Fixed Logout Button -->
         </aside>
 
         <!-- Main Content -->
         <main class="content">
             <h1 style="font-size: 60px;">EDIT MENU</h1>
             <div class="menu-container">
-               <div class="addButton">
-    <a href="ADMIN DASHBOARD (ADD MENU).html">
-        <button id="addDessert">Add Dessert</button>
-    </a>
-</div>
+                <div class="addButton">
+                    <button id="addDessert" onclick="window.location.href='ADMIN DASHBOARD (ADD MENU).html'">Add Dessert</button>
+                </div>
 
                 <br>
                 <div class="menu-catalog">
-                     <!-- LOGICAL STATEMENTS TO BE APPLIED LATER -->
+                    <!-- LOGICAL STATEMENTS TO BE APPLIED LATER -->
                     <div class="menu-item">
-                        <div class="image-placeholder">dessert image</div>
+                        <div class="image-placeholder">Dessert Image</div>
                         <div class="details">
-                            <p>name</p>
-                            <p>price</p>
-                            <p>description</p>
+                            <p>Name</p>
+                            <p>Price</p>
+                            <p>Description</p>
                         </div>
                         <div class="actions">
                             <button class="edit-menu">Edit</button>
@@ -55,5 +56,7 @@
         </main>
     </div>
 </body>
+
 </html>
+
 
