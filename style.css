@@ -665,3 +665,154 @@ body, .container {
     font-size: clamp(1em, 3vw, 2em);
 }
 /* ----------------------------------------------------------------- */
+
+
+/*  For Menu Page */
+/* ----------------------------------------------------------------- */
+
+.menu-card {
+    border: 2px solid #d07f65;
+    background-color: #F4D8BF;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.menu-image {
+    height: 200px;
+    background-color: #F9F6EDD9;
+    border-radius: 6px;
+    border: 2px solid #d07f65;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Make it show 2 items per row, adjust the number of items per row base on the screen size */
+.menu-page.menu-catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 25px;
+    flex-grow: 1;
+    max-height: calc(100vh - 65px);
+    overflow-y: auto;
+    scrollbar-width: thick;
+    scrollbar-color: #E09075 #F9F6ED;
+    border-top: 4px solid #d07f65;
+}
+
+
+/* ----------------------------------------------------------------- */
+
+
+
+.addMenuField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 30px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.addMenuLabel {
+    width: 120px;
+    font-size: 20px;
+    text-align: right;
+    font-weight: bold;
+}
+
+
+.addMenuInput input {
+    width: 340px;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    font-family: 'PoetsenOne', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+
+.addMenuInput input:focus {
+    border-bottom: 2px solid #E09075;
+}
+
+
+.addMenuInput textarea {
+    width: 340px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'PoetsenOne', sans-serif;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    resize: none;
+}
+
+.addMenuInput textarea:focus {
+    border-bottom: 2px solid #E09075;
+}
+
+.addMenuButtons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #feecdb;
+    border-top: 4px solid #d07f65;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.addMenuImageUpload {
+    width: 500px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    height: 280px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    text-align: center;
+    transition: border-color 0.3s ease-in-out;
+    margin: 0 auto;
+}
+
+.addMenuImageUpload:hover {
+    border: 2px solid #E09075;
+}
+
+.addMenuCard.menu-catalog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
+
+.add-button{
+    width: 150px;
+    height: 50px;
+    background-color: #E09075;
+    color: #F9F6ED;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
