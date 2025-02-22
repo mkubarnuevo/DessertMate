@@ -3,6 +3,7 @@ const session = require("express-session");
 const cors = require("cors");
 const connectDB = require("./MONGODB DATABASE CONNECTION");
 const authRoutes = require("./ACCOUNT AUTHENTICATION AND PROFILE.js");
+const sessionHistoryRoutes = require("./SESSION HISTORY.js");
 
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -31,6 +32,8 @@ const startServer = async () => {                                               
         console.log("Connected to MongoDB");                                     // X
                                                                                  // X
         app.use("/", authRoutes);                                                // X
+                                                                                 // X
+        app.use("/", sessionHistoryRoutes);                                      // X
                                                                                  // X
         app.listen(PORT, () => console.log(`Server running on port ${PORT}`));   // X
     } catch (err) {                                                              // X
