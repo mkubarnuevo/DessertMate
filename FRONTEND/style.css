@@ -8,6 +8,8 @@ body, .container {
     padding: 0;
     width: 100%;
     height: 100vh;
+    min-height: 600px;
+    overflow-y: auto;
 }
 
 /* Sidebar */
@@ -82,6 +84,7 @@ body, .container {
     text-align: left; /* Aligns text properly */
     padding: 0;
 }
+
 /* ----------------------------------------------------------------- */
 
 /* Main Content */

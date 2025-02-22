@@ -16,11 +16,11 @@ document.getElementById("login")?.addEventListener("click", async () => {
 
         const data = await response.json();
         if (response.ok) {
+            console.log("Login response:", data);
             localStorage.setItem("user", JSON.stringify(data.user));
             alert("Login successful!");
 
-            // Redirect based on user role
-            if (data.user.admin) {
+            if (data.user && data.user.admin) {
                 window.location.href = "ADMIN DASHBOARD (ADD MENU).html";
             } else {
                 window.location.href = "HOMEPAGE.html";

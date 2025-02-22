@@ -64,8 +64,14 @@ router.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
-        const { password: _, ...userWithoutPassword } = user;
-        res.status(200).json({ message: "Login successful", user: userWithoutPassword });
+        const userObj = user.toObject ? user.toObject() : user;
+
+        const { password: _, ...userWithoutPassword } = userObj;
+        res.status(200).json({ message: "Login successful", user: {
+            email: userWithoutPassword.email,
+            admin: userWithoutPassword.admin || false,
+        },
+    });
     } catch (err) {
         res.status(500).json({ message: "Server error", error: err.message });
     }
@@ -73,7 +79,18 @@ router.post("/login", async (req, res) => {
 
 // LOGOUT FUNCTION =====================================================================================
 router.post("/logout", (req, res) => {
-    res.status(200).json({ message: "Logout successful" });
+    console.log("Session before destroy:", req.session); // Debugging
+
+    if (!req.session) {
+        return res.status(400).json({ message: "No active session found." });
+    }
+
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: "Logout failed!" });
+        }
+        res.json({ message: "Logged out successfully!" });
+    });
 });
 
 // GET USER BY ID ======================================================================================
