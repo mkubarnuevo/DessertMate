@@ -1,18 +1,21 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const MongoStore = require("connect-mongo");
 const connectDB = require("./MONGODB DATABASE CONNECTION");
 const authRoutes = require("./ACCOUNT AUTHENTICATION AND PROFILE.js");
 const sessionHistoryRoutes = require("./SESSION HISTORY.js");
 
-
-// XXXXXXXXXXXXXXXXXXXXXXXXXXX
-const app = express();    // X
-const PORT = 5500;        // X
-                          // X
-app.use(cors());          // X
-app.use(express.json());  // X
-// XXXXXXXXXXXXXXXXXXXXXXXXXXX
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+const app = express();                  // X
+const PORT = 5500;                      // X
+                                        // X
+app.use(cors({                          // X
+    origin: "http://127.0.0.1:5500",    // X
+    credentials: true                   // X
+}));                                    // X
+app.use(express.json());                // X
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 app.use(                                        // X
@@ -20,7 +23,12 @@ app.use(                                        // X
         secret: "DessertMateSecretKey123",      // X
         resave: false,                          // X
         saveUninitialized: false,               // X
-        cookie: { secure: false},               // X
+        cookie: {                               // X
+            secure: true,                       // X
+            httpOnly: true,                     // X
+            sameSite: "lax",                    // X
+            maxAge: 1000 * 60 * 60 * 24,        // X
+        }                                       // X
     })                                          // X
 );                                              // X
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
