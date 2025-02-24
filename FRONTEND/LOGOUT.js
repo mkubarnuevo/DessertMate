@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {                       // X
             if (response.ok) {                                              // X
                 alert("Logged out successfully!");                          // X
                 localStorage.removeItem("user");                            // X
-                window.location.href = "LOGIN PAGE.html";                   // X
+                window.location.href = "LANDING PAGE.html";                   // X
             } else {                                                        // X
                 alert("Logout failed: " + data.message);                    // X
             }                                                               // X
