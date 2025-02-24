@@ -48,8 +48,10 @@ body, .container {
 }
 
 .username {
-    font-size: clamp(40px, 5vw, 80px);
+    font-size: clamp(20px, 5vw, 60px);
     margin-top: -80px;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 /* Navigation Menu */

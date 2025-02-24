@@ -22,7 +22,7 @@ document.getElementById("login")?.addEventListener("click", async () => {       
             alert("Login successful!");                                         // X
                                                                                 // X
             if (data.user && data.user.admin) {                                 // X
-                window.location.href = "ADMIN DASHBOARD (ADD MENU).html";       // X
+                window.location.href = "HOMEPAGE.html";                         // X
             } else {                                                            // X
                 window.location.href = "HOMEPAGE.html";                         // X
             }                                                                   // X

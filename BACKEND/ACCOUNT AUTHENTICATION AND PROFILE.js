@@ -81,7 +81,8 @@ router.post("/login", async (req, res) => {                                     
             _id: user._id,                                                                  // X
             email: user.email,                                                              // X
             username: user.username,                                                        // X
-            phone: user.phone                                                               // X
+            phone: user.phone,                                                              // X
+            admin: user.admin                                                               // X
         };                                                                                  // X
         console.log("Session after login:", req.session);                                   // X
                                                                                             // X
