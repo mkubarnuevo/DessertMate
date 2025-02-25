@@ -270,6 +270,8 @@ body, .container {
     padding: 10px;
     background-color: #F9F6ED;
     border-bottom: 2px solid #E09075;
+    display: flex;
+    flex-direction: column;
 }
 
 .userInputField {
@@ -331,10 +333,28 @@ body, .container {
     filter: invert(49%) sepia(36%) saturate(653%) hue-rotate(328deg) brightness(92%) contrast(91%);
 }
 
-
 .sendButton:hover img {
     transform: scale(1.1);
     opacity: 0.8;
+}
+
+/* Chat Bubbles */
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 70%;
+    clear: both;
+}
+
+.user {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+}
+
+.bot {
+    background-color: #E0E0E0;
+    align-self: flex-start;
 }
 /* ----------------------------------------------------------------- */
 
