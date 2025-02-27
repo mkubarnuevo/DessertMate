@@ -5,6 +5,7 @@ const MongoStore = require("connect-mongo");
 const connectDB = require("./MONGODB DATABASE CONNECTION");
 const authRoutes = require("./ACCOUNT AUTHENTICATION AND PROFILE.js");
 const sessionHistoryRoutes = require("./SESSION HISTORY.js");
+const Menu = require("./product.model.js"); // ✅ Added: Import Menu Model
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 const app = express();                  // X
@@ -14,7 +15,8 @@ app.use(cors({                          // X
     origin: "http://127.0.0.1:5500",    // X
     credentials: true                   // X
 }));                                    // X
-app.use(express.json());                // X
+app.use(express.json({ limit: "10mb" })); // ✅ Increased request size limit for image uploads
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -32,6 +34,33 @@ app.use(                                        // X
     })                                          // X
 );                                              // X
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+// ✅ Added: Menu API Routes
+app.post("/api/menu", async (req, res) => {
+    try {
+        const { name, price, description, image } = req.body;
+        if (!name || !price || !description || !image) {
+            return res.status(400).json({ message: "All fields are required." });
+        }
+
+        const newMenuItem = new Menu({ name, price, description, image });
+        await newMenuItem.save();
+
+        res.status(201).json({ message: "Menu item added successfully!" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+});
+
+app.get("/api/menu", async (req, res) => {
+    try {
+        const menuItems = await Menu.find();
+        res.status(200).json(menuItems);
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error });
+    }
+});
+// ✅ End of Menu API Routes
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 const startServer = async () => {                                                // X

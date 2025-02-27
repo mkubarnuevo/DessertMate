@@ -11,6 +11,7 @@
     <script src="LOGOUT.js" defer></script>
     <script src="USERNAME REPLACE LOADING.js" defer></script>
     <script src="MANAGE MENU VISIBILITY.js" defer></script>
+    <script src="add menu.js" defer></script> <!-- ✅ Required for adding menu items -->
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <p class="welcome">Welcome</p>
-            <h1 class="username">Loading...</h1> <!-- Will be replaced with the real username -->
+            <h1 class="username">Loading...</h1>
             <nav>
                 <ul>
                     <li><a href="HOMEPAGE.html">Chatbot</a></li>
@@ -28,7 +29,7 @@
                     <li><a href="MANAGE MENU PAGE.html">Manage Menu</a></li>
                 </ul>
             </nav>
-            <button class="logout">Log Out</button> <!-- Fixed Logout Button -->
+            <button class="logout">Log Out</button>
         </aside>
 
         <!-- Main Content -->
@@ -36,14 +37,19 @@
             <h1 style="font-size: 30px;">ADD MENU</h1>
             <div class="menu-container">
                 <div class="menu-catalog addMenuCard">
-                    <div class="addMenuImageUpload">Upload Image</div>
+                    
+                    <!-- Image Upload Input -->
+                    <div class="addMenuField">
+                        <label for="imageUpload">Upload Image:</label>
+                        <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                    </div>
 
                     <div class="addMenuField">
                         <div class="addMenuLabel">
                             <label for="dessert_name">Name:</label>
                         </div>
                         <div class="addMenuInput">
-                            <input type="text" id="dessert_name" name="dessert_name" placeholder="Enter dessert name">
+                            <input type="text" id="dessert_name" name="dessert_name" placeholder="Enter dessert name" required>
                         </div>
                     </div>
 
@@ -52,7 +58,7 @@
                             <label for="price">Price:</label>
                         </div>
                         <div class="addMenuInput">
-                            <input type="text" id="price" name="price" placeholder="Enter price">
+                            <input type="number" id="price" name="price" placeholder="Enter price" step="0.01" required>
                         </div>
                     </div>
 
@@ -61,18 +67,18 @@
                             <label for="description">Description:</label>
                         </div>
                         <div class="addMenuInput">
-                            <textarea id="description" name="description" placeholder="Enter description"></textarea>
+                            <textarea id="description" name="description" placeholder="Enter description" required></textarea>
                         </div>
                     </div>
 
-                    <br><br>
                     <div class="addMenuButtons">
-                        <button id="add" class="add-button">Add</button>
+                        <button id="add" class="add-button">Add Dessert</button>
                     </div>
+
                 </div>
-            </div> <!-- Closes .menu-container -->
+            </div>
         </main>
-    </div> <!-- Closes .container -->
+    </div>
 </body>
 
 </html>
