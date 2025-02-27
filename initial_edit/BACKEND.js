@@ -5,12 +5,10 @@ const MongoStore = require("connect-mongo");
 const connectDB = require("./MONGODB DATABASE CONNECTION");
 const authRoutes = require("./ACCOUNT AUTHENTICATION AND PROFILE.js");
 const sessionHistoryRoutes = require("./SESSION HISTORY.js");
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 const Product = require('./product.model.js'); 
 const multer = require('multer'); 
 const path = require('path'); 
-const upload = multer({ storage: storage }); 
-
 
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -18,7 +16,7 @@ const app = express();                  // X
 const PORT = 5500;                      // X
                                         // X
 app.use(cors({                          // X
-    origin: "http://127.0.0.1:5500",    // X
+    origin: "http://127.0.0.1:5500",   // X
     credentials: true                   // X
 }));                                    // X
 app.use(express.json());                // X
@@ -63,6 +61,11 @@ startServer();                                                                  
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
+app.use('/uploads', express.static('uploads'));
+
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/'); 
@@ -72,48 +75,44 @@ const storage = multer.diskStorage({
     }
 });
 
-
-
-app.use(express.json());                 
-app.use('/uploads', express.static('uploads'));
-                                       
-                                                                                // X
-app.get('/api/products', async(req, res) => {                                   // X
-                                                                                // X
-    try {                                                                       // X
-       const products = await Product.find({});                                 // X                              
-       res.status(200).json(products);                                          // X
-    }catch(error) {                                                             // X
-        res.status(500).json({message: error.message});                         // X
-    }                                                                           // X
-});                                                                             // X
-                                                                                // X
-app.get('/api/product/:id', async(req, res) => {                                // X
-                                                                                // X
-    try{                                                                        // X
-        const { id } = req.params;                                              // X
-        const product = await Product.findById(id);                             // X
-        res.status(200).json(product);                                          // X
-    } catch(error) {                                                            // X
-        res.status(500).json({message: error.message});                         // X
-    }                                                                           // X
-});                                                                             // X
-
-app.post('/api/products', upload.single('image'), async (req, res) => {
+const upload = multer({ storage: storage });                                       
+const handleAsync = (fn) => async (req, res) => {
     try {
-        const { name, price, description } = req.body;
-        const image = req.file ? `/uploads/${req.file.filename}` : null; 
+        await fn(req, res);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+app.get('/api/products', handleAsync(async (req, res) => {
+    res.status(200).json(await Product.find({}));
+}));
+
+app.get('/api/product/:id', handleAsync(async (req, res) => {
+    res.status(200).json(await Product.findById(req.params.id));
+}));
+
+app.post('/api/products', upload.single('image'), handleAsync(async (req, res) => {
+    try{
+        console.log("file recieved: ", req.file);
+        const { name, description } = req.body;
+        const price = parseFloat(req.body.price);
+
+        if (!name || !description || isNaN(price) || price <= 0 || !req.file) {
+            return res.status(400).json({ message: "Invalid input. Please check all fields and upload an image." });
+        }
+
+        const image = `/uploads/${req.file.filename}`;
 
         const product = new Product({ name, price, description, image });
         await product.save();
 
-        res.status(200).json(product);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(200).json({ ...product.toObject(), image: `http://localhost:5500${image}` });
+    }catch(error){
+        console.log("post product error: ", error);
+        res.status(500).json({message: error.message});
     }
-});
-                                
 
-
+}));                                                 
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

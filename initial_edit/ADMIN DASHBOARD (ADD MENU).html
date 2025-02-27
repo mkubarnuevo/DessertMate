@@ -11,7 +11,7 @@
     <script src="LOGOUT.js" defer></script>
     <script src="USERNAME REPLACE LOADING.js" defer></script>
     <script src="MANAGE MENU VISIBILITY.js" defer></script>
-    <script src="addDessert.js" defer></script>
+    <script src="ADD MENU.js" defer></script>
 </head>
 
 <body>
@@ -37,8 +37,9 @@
             <h1 style="font-size: 30px;">ADD MENU</h1>
             <div class="menu-container">
                 <div class="menu-catalog addMenuCard">
-                    <div class="addMenuImageUpload">Upload Image</div>
+                    <div class="addMenuImageUpload" onclick="document.getElementById('image').click()" >Upload Image</div>
                         <input type="file" id="image" accept="image/*">
+                        <img id="preview" src="" alt="Uploaded Image" style="display: none; max-width: 100%; height: auto;">
                         
                     <div class="addMenuField">
                         <div class="addMenuLabel">
