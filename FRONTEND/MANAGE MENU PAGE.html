@@ -11,6 +11,8 @@
     <script src="LOGOUT.js" defer></script>
     <script src="USERNAME REPLACE LOADING.js" defer></script>
     <script src="MANAGE MENU VISIBILITY.js" defer></script>
+    <script src="fetch_manage_menu.js" defer></script>
+
 </head>
 
 <body>
@@ -40,20 +42,9 @@
                 </div>
 
                 <br>
-                <div class="menu-catalog">
-                    <!-- LOGICAL STATEMENTS TO BE APPLIED LATER -->
-                    <div class="menu-item">
-                        <div class="image-placeholder">Dessert Image</div>
-                        <div class="details">
-                            <p>Name</p>
-                            <p>Price</p>
-                            <p>Description</p>
-                        </div>
-                        <div class="actions">
-                            <button class="edit-menu">Edit</button>
-                            <button class="delete-menu">Delete</button>
-                        </div>
-                    </div>
+
+                <div class="menu-catalog" id="menuContainer">
+                    <!-- 🛠️ Menu items will be dynamically inserted here by manage_menu.js -->
                 </div>
             </div>
         </main>

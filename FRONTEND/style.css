@@ -360,7 +360,7 @@ body, .container {
 
 /* For Manage Menu Page (Admin Dashboard) */
 /* ----------------------------------------------------------------- */
-.menu-container {
+.menu-container { 
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -368,6 +368,7 @@ body, .container {
     overflow: hidden;
 }
 
+/* Add Dessert Button */
 .addButton {
     align-self: flex-end;
     padding-right: 43px;
@@ -390,6 +391,7 @@ body, .container {
     background-color: #d07f65;
 }
 
+/* Menu List Container */
 .menu-catalog {
     display: flex;
     flex-direction: column;
@@ -398,55 +400,97 @@ body, .container {
     flex-grow: 1;
     max-height: calc(100vh - 65px);
     overflow-y: auto;
-    scrollbar-width: thick;
+    scrollbar-width: thin;
     scrollbar-color: #E09075 #F9F6ED;
     border-top: 4px solid #d07f65;
 }
 
+/* 🔹 Restored Original Layout for Menu Items */
 .menu-item {
     position: relative;
     display: flex;
-    background-color: #F4D8BF;
-    padding: 30px;
     align-items: center;
+    background-color: #F4D8BF;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    min-height: 220px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* 🔹 Adjusted Image Size & Position */
 .image-placeholder {
-    width: 200px;
-    height: 180px;
+    width: 250px;
+    height: 200px;
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    font-size: 24px;
-    text-align: center;
+    overflow: hidden;
+    margin-right: 20px;
 }
 
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* 🔹 Restored Proper Alignment for Details */
 .details {
-    padding-top: 25px;
-    padding-left: 10px;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: left; 
-    text-align: center; 
-    height: 100%;
+    justify-content: center;
+    gap: 5px;
+    text-align: left;
+    font-family: "Poetsen One", sans-serif; /* Restored original font */
 }
 
-.details p {
-    font-size: 24px;
+/* Labels for Inputs */
+.details label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #694729;
+    margin-bottom: 2px;
 }
 
+/* Shorter Input & Textarea Styling */
+.details input, .details textarea {
+    font-size: 18px; /* Original font size */
+    padding: 6px;
+    width: 80%; /* Shorter width */
+    border: 2px solid #E09075;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.details input:disabled, .details textarea:disabled {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.details input:focus, .details textarea:focus {
+    border-color: #d07f65;
+}
+
+/* 🔹 Restore Buttons to Previous Position */
 .actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: auto;
+    align-items: flex-end;
 }
 
-.edit-menu, .delete-menu {
-    width: 60px;
+/* 🔹 Restore Previous Button Style */
+.edit-menu, .save-menu, .delete-menu {
+    width: 70px;
     height: 40px;
     background-color: white;
     color: #E09075;
@@ -458,9 +502,11 @@ body, .container {
     transition: background 0.3s ease-in-out;
 }
 
-.edit-menu:hover, .delete-menu:hover {
-    background-color: #694729;/
+.edit-menu:hover, .save-menu:hover, .delete-menu:hover {
+    background-color: #694729;
+    color: white;
 }
+
 /* ----------------------------------------------------------------- */
 
 /* For USER PROFILE Page */
