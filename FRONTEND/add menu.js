@@ -15,14 +15,13 @@ document.getElementById("add").addEventListener("click", async () => {
     }
 
     const addButton = document.getElementById("add");
-    addButton.disabled = true; // Disable button to prevent multiple clicks
+    addButton.disabled = true;
     addButton.innerText = "Adding...";
 
-    // Convert image to Base64
     const reader = new FileReader();
     reader.readAsDataURL(imageUpload);
     reader.onloadend = async () => {
-        const image = reader.result; // Base64 image string
+        const image = reader.result;
 
         try {
             const response = await fetch("http://localhost:5500/api/menu", {

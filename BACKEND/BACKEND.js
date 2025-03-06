@@ -2,10 +2,11 @@ const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
 const MongoStore = require("connect-mongo");
+const mongoose = require('mongoose');
 const connectDB = require("./MONGODB DATABASE CONNECTION");
 const authRoutes = require("./ACCOUNT AUTHENTICATION AND PROFILE.js");
 const sessionHistoryRoutes = require("./SESSION HISTORY.js");
-const Menu = require("./product.model.js"); // ✅ Added: Import Menu Model
+const Menu = require("./product.model.js");
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 const app = express();                  // X
@@ -15,7 +16,7 @@ app.use(cors({                          // X
     origin: "http://127.0.0.1:5500",    // X
     credentials: true                   // X
 }));                                    // X
-app.use(express.json({ limit: "10mb" })); // ✅ Increased request size limit for image uploads
+app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -93,7 +94,54 @@ app.put("/api/menu/:id", async (req, res) => {
     }
 });
 
-// ✅ End of Menu API Routes
+async function getMenuItemsForChatbot() {
+    try {
+        await connectDB(); // Ensure connection is established.
+        const collection = mongoose.connection.db.collection("menu"); // Directly access the "menu" collection.
+        const menuItems = await collection.find({}).toArray(); // Fetch all documents.
+
+        let formattedMenu = menuItems.map(item => {
+            return `${item.name}: ₱${parseFloat(item.price).toFixed(2)}, ${item.description}`;
+        }).join("\n");
+        return formattedMenu;
+    } catch (error) {
+        console.error("Error fetching menu items for chatbot:", error);
+        return "Sorry, I couldn't retrieve the menu right now.";
+    }
+}
+
+// New endpoint specifically for chatbot menu access.
+app.get("/api/chatbot/menus", async (req, res) => {
+    try {
+        await connectDB();
+        const collection = mongoose.connection.db.collection("menus");
+        const menuItems = await collection.find({}).toArray();
+
+        let formattedMenu = menuItems.map(item => {
+            return `${item.name}: ₱${item.price.toFixed(2)}, ${item.description}`; // Ensure price is formatted correctly
+        }).join("\n");
+        res.status(200).send(formattedMenu);
+    } catch (error) {
+        console.error("Error fetching menus items for chatbot:", error);
+        res.status(500).send("Error fetching menus data.");
+    }
+});
+
+app.get("/api/chatbot/products", async (req, res) => {
+    try {
+        await connectDB();
+        const collection = mongoose.connection.db.collection("products");
+        const productItems = await collection.find({}).toArray();
+
+        let formattedProducts = productItems.map(item => {
+            return `${item.name}: ₱${item.price.toFixed(2)}, ${item.description}`; // Ensure price is formatted correctly
+        }).join("\n");
+        res.status(200).send(formattedProducts);
+    } catch (error) {
+        console.error("Error fetching products items for chatbot:", error);
+        res.status(500).send("Error fetching products data.");
+    }
+});
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 const startServer = async () => {                                                // X

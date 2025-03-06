@@ -1,8 +1,7 @@
-document.addEventListener("DOMContentLoaded", async () => { 
+document.addEventListener("DOMContentLoaded", async () => {
     const menuContainer = document.querySelector(".menu-catalog");
 
     try {
-        // Fetch menu data from the backend
         const response = await fetch("http://localhost:5500/api/menu");
 
         if (!response.ok) {
@@ -11,28 +10,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const menuItems = await response.json();
 
-        // If no menu items are found, display a message
         if (!menuItems || menuItems.length === 0) {
             menuContainer.innerHTML = "<p>No menu items available.</p>";
             return;
         }
 
-        // Clear existing content
         menuContainer.innerHTML = "";
 
-        // Loop through menu items and create UI elements
         menuItems.forEach(item => {
             const menuItem = document.createElement("div");
             menuItem.classList.add("menu-item");
 
             menuItem.innerHTML = `
                 <div class="image-placeholder">
-                    <img src="${item.image}" alt="${item.name}" id="image-${item._id}" 
-                         style="width: 250px; height: 200px; object-fit: cover; border-radius: 8px;">
+                    <img src="${item.image}" alt="${item.name}" id="image-${item._id}">
                 </div>
                 <div class="details">
+                    <div class="label-container"><label for="name-${item._id}">Name:</label></div>
                     <input type="text" id="name-${item._id}" value="${item.name}" disabled>
+                    <div class="label-container"><label for="price-${item._id}">Price:</label></div>
                     <input type="number" id="price-${item._id}" value="${item.price}" disabled>
+                    <div class="label-container"><label for="description-${item._id}">Description:</label></div>
                     <textarea id="description-${item._id}" disabled>${item.description}</textarea>
                 </div>
                 <div class="actions">

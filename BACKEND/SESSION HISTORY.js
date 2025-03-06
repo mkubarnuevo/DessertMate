@@ -26,9 +26,40 @@ testFetch();
 
 async function getHuggingFaceResponse(message) {
     try {
+        let prompt = message;
+        let menusData = null;
+        let productsData = null;
+
+        // Fetch data from "menus" collection
+        const menusResponse = await fetch("http://localhost:5500/api/chatbot/menus");
+        if (menusResponse.ok) {
+            menusData = await menusResponse.text();
+        } else {
+            prompt += "\n\nCould not retrieve some menu items at this time.";
+        }
+
+        // Fetch data from "products" collection
+        const productsResponse = await fetch("http://localhost:5500/api/chatbot/products");
+        if (productsResponse.ok) {
+            productsData = await productsResponse.text();
+        } else {
+            prompt += "\n\nCould not retrieve some product items at this time.";
+        }
+
+        // Combine data
+        let combinedData = "";
+        if (menusData) {
+            combinedData += `\n\nMenu Items:\n${menusData}`;
+        }
+        if (productsData) {
+            combinedData += `\n\nProduct Items:\n${productsData}`;
+        }
+
+        prompt += combinedData;
+
         const chatCompletion = await client.chatCompletion({
             model: HUGGINGFACE_MODEL_ID,
-            messages: [{ role: "user", content: message }],
+            messages: [{ role: "user", content: prompt }],
             provider: "hf-inference",
             max_tokens: 500,
         });

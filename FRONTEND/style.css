@@ -360,7 +360,7 @@ body, .container {
 
 /* For Manage Menu Page (Admin Dashboard) */
 /* ----------------------------------------------------------------- */
-.menu-container { 
+.menu-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -368,7 +368,6 @@ body, .container {
     overflow: hidden;
 }
 
-/* Add Dessert Button */
 .addButton {
     align-self: flex-end;
     padding-right: 43px;
@@ -400,12 +399,12 @@ body, .container {
     flex-grow: 1;
     max-height: calc(100vh - 65px);
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #E09075 #F9F6ED;
     border-top: 4px solid #d07f65;
 }
 
-/* 🔹 Restored Original Layout for Menu Items */
 .menu-item {
     position: relative;
     display: flex;
@@ -413,14 +412,14 @@ body, .container {
     background-color: #F4D8BF;
     padding: 20px;
     border-radius: 8px;
-    width: 100%;
+    width: auto;
     min-height: 220px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* 🔹 Adjusted Image Size & Position */
 .image-placeholder {
-    width: 250px;
+    max-width: 250px;
     height: 200px;
     background-color: white;
     display: flex;
@@ -429,39 +428,47 @@ body, .container {
     border-radius: 5px;
     overflow: hidden;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .image-placeholder img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
     object-fit: cover;
     border-radius: 5px;
 }
 
-/* 🔹 Restored Proper Alignment for Details */
 .details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    text-align: left;
-    font-family: "Poetsen One", sans-serif; /* Restored original font */
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 15px;
+    align-items: start;
 }
 
-/* Labels for Inputs */
+.label-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
 .details label {
     font-size: 18px;
     font-weight: bold;
     color: #694729;
-    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
 }
 
-/* Shorter Input & Textarea Styling */
-.details input, .details textarea {
-    font-size: 18px; /* Original font size */
+.details .label-container:nth-child(5) {
+    align-self: start;
+}
+
+.details input,
+.details textarea {
+    width: 100%;
+    font-size: 18px;
     padding: 6px;
-    width: 80%; /* Shorter width */
     border: 2px solid #E09075;
     border-radius: 5px;
     outline: none;
@@ -469,32 +476,50 @@ body, .container {
     transition: border-color 0.3s ease-in-out;
 }
 
-.details input:disabled, .details textarea:disabled {
+.details textarea {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+    display: block;
+}
+
+.details input:focus,
+.details textarea:focus {
+    border-color: #d07f65;
+}
+
+.details input:disabled,
+.details textarea:disabled {
     border: none;
     background-color: transparent;
     font-weight: bold;
 }
 
-.details input:focus, .details textarea:focus {
+.details input:focus,
+.details textarea:focus {
     border-color: #d07f65;
 }
 
-/* 🔹 Restore Buttons to Previous Position */
 .actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     margin-left: auto;
     align-items: flex-end;
+    flex-shrink: 0;
+    justify-self: end;
 }
 
-/* 🔹 Restore Previous Button Style */
-.edit-menu, .save-menu, .delete-menu {
-    width: 70px;
-    height: 40px;
+.edit-menu,
+.save-menu,
+.delete-menu {
+    width: 60px;
+    height: 35px;
+    font-size: 14px;
+    padding: 5px;
     background-color: white;
     color: #E09075;
-    font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
@@ -502,11 +527,12 @@ body, .container {
     transition: background 0.3s ease-in-out;
 }
 
-.edit-menu:hover, .save-menu:hover, .delete-menu:hover {
+.edit-menu:hover,
+.save-menu:hover,
+.delete-menu:hover {
     background-color: #694729;
     color: white;
 }
-
 /* ----------------------------------------------------------------- */
 
 /* For USER PROFILE Page */
