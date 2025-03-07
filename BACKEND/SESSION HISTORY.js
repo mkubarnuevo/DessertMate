@@ -29,6 +29,7 @@ async function getHuggingFaceResponse(message) {
         let prompt = message;
         let menusData = null;
         let productsData = null;
+        let supportInfo = ""; // Initialize support info string
 
         // Fetch data from "menus" collection
         const menusResponse = await fetch("http://localhost:5500/api/chatbot/menus");
@@ -46,7 +47,7 @@ async function getHuggingFaceResponse(message) {
             prompt += "\n\nCould not retrieve some product items at this time.";
         }
 
-        // Combine data
+        // Combine menu and product data
         let combinedData = "";
         if (menusData) {
             combinedData += `\n\nMenu Items:\n${menusData}`;
@@ -55,7 +56,37 @@ async function getHuggingFaceResponse(message) {
             combinedData += `\n\nProduct Items:\n${productsData}`;
         }
 
-        prompt += combinedData;
+        // Support Information
+        const supportContent = {
+            faqs: `
+                What does the chatbot do? It answers questions about the menu, hours, and recommendations.
+                Can it take orders? No, it only provides information.
+                Is my data safe? Yes, no personal or payment data is stored.
+            `,
+            termsOfUse: `
+                1. The chatbot is for answering inquiries only.
+                2. It operates 24/7 but needs an internet connection.
+                3. Users should use it responsibly.
+            `,
+            privacyPolicy: `
+                1. We store basic interactions for better responses.
+                2. No personal or financial data is collected.
+                3. Users can view their chat history anytime.
+            `
+        };
+
+        // Check for support inquiries
+        if (message.toLowerCase().includes("faq") || message.toLowerCase().includes("frequently asked")) {
+            supportInfo += `\n\nFAQs:\n${supportContent.faqs}`;
+        }
+        if (message.toLowerCase().includes("terms") || message.toLowerCase().includes("terms of use")) {
+            supportInfo += `\n\nTerms of Use:\n${supportContent.termsOfUse}`;
+        }
+        if (message.toLowerCase().includes("privacy") || message.toLowerCase().includes("privacy policy")) {
+            supportInfo += `\n\nPrivacy Policy:\n${supportContent.privacyPolicy}`;
+        }
+
+        prompt += combinedData + supportInfo; // Append both menu/product data and support info
 
         const chatCompletion = await client.chatCompletion({
             model: HUGGINGFACE_MODEL_ID,
